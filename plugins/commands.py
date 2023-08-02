@@ -35,14 +35,14 @@ async def start(client, message):
                                 InlineKeyboardButton("Hᴇʟᴩ & Cᴏᴍᴍᴀɴᴅs Mᴇɴᴜ", callback_data="help")
                             ],
                             [
-                                InlineKeyboardButton("Cʜᴀɴɴᴇʟ", url=f"https://t.me/NG_BotS"),
-                                InlineKeyboardButton("Sᴜᴩᴩᴏʀᴛ", url=f"https://t.me/NG_Continent")
+                                InlineKeyboardButton("Cʜᴀɴɴᴇʟ", url=f"t.me/{UPDATES_CHANNEL}"),
+                                InlineKeyboardButton("Sᴜᴩᴩᴏʀᴛ", url=f"t.me/{SUPPORT_GRPUP}")
                             ],
                             [
                                 InlineKeyboardButton("Eᴀʀɴ Mᴏɴᴇʏ", callback_data="earn_money")
                             ],
                             [
-                                InlineKeyboardButton("Dᴇᴠʟᴏᴩᴇʀ 👨‍💻", user_id="6112935306"),
+                                InlineKeyboardButton("Dᴇᴠʟᴏᴩᴇʀ 👨‍💻", user_id=f"{OWNER}"),
                                 InlineKeyboardButton("Cʟᴏsᴇ ❌", callback_data="delete")
                             ]
                         ]
@@ -64,7 +64,7 @@ async def start(client, message):
             await message.reply_text(
                 "**‼️Fɪʟᴇ ᴡɪʟʟ ᴀᴜᴛᴏ ᴅᴇʟᴇᴛᴇ ɪɴ 𝟸 ᴍɪɴᴜᴛᴇs😱**"
                 "__💡Fᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs ᴏʀ ᴀɴʏᴡʜᴇʀᴇ ʙᴇғᴏʀᴇ ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ.😁__"
-                "**😇Jᴏɪɴ @NG_BotS**"
+                f"**😇Jᴏɪɴ @{UPDATES_CHANNEL}**"
             )
             await message.delete()
             await asyncio.sleep(120)  # Sleep for 2 minutes (2 * 60 = 120 seconds)
