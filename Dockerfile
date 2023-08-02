@@ -1,6 +1,6 @@
 FROM python:3.8-slim-buster
 
-WORKDIR /MxA-Filestore-Pro-Beta
+WORKDIR /Premium-Filestore
 
 COPY requirements.txt .
 
