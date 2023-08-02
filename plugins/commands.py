@@ -25,8 +25,8 @@ async def start(client, message):
             final_image_path, stkr, stm = await send_welcome_message(client, message)
             await stm.edit("Generated, Now Sending...")
             await asyncio.gather(
-                client.send_photo(
-                    chat_id=message.chat.id,
+                message.reply_photo(
+                    #chat_id=message.chat.id,
                     photo=final_image_path,
                     caption=START_TEXT.format(message.from_user.mention),
                     reply_markup=InlineKeyboardMarkup(
