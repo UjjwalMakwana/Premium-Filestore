@@ -6,7 +6,7 @@ from .forcesub import FSUB_CHANNEL
 from bot import Filestore
 
 
-@Filestore.on_callback_query()
+@Client.on_callback_query()
 async def callback(bot: Client, query: CallbackQuery):
     me = await bot.get_me()
     cb_data = query.data
@@ -31,7 +31,7 @@ async def callback(bot: Client, query: CallbackQuery):
                         InlineKeyboardButton("Sᴜᴩᴩᴏʀᴛ Gʀᴏᴜᴩ", url=f"https://t.me/NG_Continent")
                     ],
                     [
-                        InlineKeyboardButton("Dev 👨‍💻", user_id="6112935306"),
+                        InlineKeyboardButton("Dev 👨‍💻", user_id=f"{OWNERE}"),
                         InlineKeyboardButton("Close ❌", callback_data="delete")
                     ],
                     [
@@ -53,7 +53,7 @@ async def callback(bot: Client, query: CallbackQuery):
                         InlineKeyboardButton("Sᴜᴩᴩᴏʀᴛ Gʀᴏᴜᴩ", url=f"https://t.me/NG_Continent")
                     ],
                     [
-                        InlineKeyboardButton("Dev 👨‍💻", user_id="6112935306"),
+                        InlineKeyboardButton("Dev 👨‍💻", user_id=f"{OWNERE}"),
                         InlineKeyboardButton("Close ❌", callback_data="delete")
                     ],
                     [
@@ -75,7 +75,7 @@ async def callback(bot: Client, query: CallbackQuery):
                         InlineKeyboardButton("Sᴜᴩᴩᴏʀᴛ Gʀᴏᴜᴩ", url=f"https://t.me/NG_Continent")
                     ],
                     [
-                        InlineKeyboardButton("Dev 👨‍💻", user_id="6112935306"),
+                        InlineKeyboardButton("Dev 👨‍💻", user_id=f"{OWNERE}"),
                         InlineKeyboardButton("Close ❌", callback_data="delete")
                     ],
                     [
@@ -101,7 +101,7 @@ async def callback(bot: Client, query: CallbackQuery):
                          InlineKeyboardButton("Eᴀʀɴ Mᴏɴᴇʏ", callback_data="earn_money")
                     ],
                     [
-                         InlineKeyboardButton("Dᴇᴠʟᴏᴩᴇʀ 👨‍💻", user_id="6112935306"),
+                         InlineKeyboardButton("Dᴇᴠʟᴏᴩᴇʀ 👨‍💻", user_id=f"{OWNERE}"),
                          InlineKeyboardButton("Cʟᴏsᴇ ❌", callback_data="delete")
                     ]
                 ]
