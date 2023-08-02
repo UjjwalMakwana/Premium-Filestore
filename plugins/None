@@ -1,0 +1,67 @@
+#from bot import mxabot
+#import pymongo
+#from pymongo import MongoClient
+#from configs import *
+#from pyrogram import Client, filters
+#from pyrogram.types import Message
+#from plugins.short import generate_random_string
+#import asyncio
+
+#mongo_client = MongoClient(DATABASE_URL)
+#database = mongo_client["bot_db"]
+#clones_collection = database["clones"]
+
+#active_clones = []
+
+#@Client.on_message(filters.private & filters.command("clone"))
+async def clone(bot, message: Message):
+    chat = message.chat.id
+    text = await message.reply("send bot token along with command\n\nExample:-:\n /clone token")
+    token = message.text.split(' ', 1)[1]
+    try:
+        await text.edit("Starting your clone")
+        name = chat
+        clone = Client(f"{name}", API_ID, API_HASH, bot_token=token, plugins={"root": "clone"}, workers=300, in_memory=True)
+        await clone.start()
+        user = await clone.get_me()
+        await message.reply(f"Your Clone bot Has Been Successfully Started As @{user.username}!")
+
+        clone_data = {"name": name, "token": token}
+        clones_collection.insert_one(clone_data)
+
+        active_clones.append(clone)
+
+    except Exception as e:
+        await message.reply(f"ERROR: {str(e)}\nPress /start to Start again.")
+
+
+
+#@Client.on_message(filters.private & filters.command("st_clone")) & filters.user("6532169397")
+async def start_saved_clones(bt: Client, message):
+    msg = await message.reply_text("Sᴛᴀʀᴛɪɴɢ Aʟʟ Cʟɪᴇɴᴛs...")
+    clones = clones_collection.find()
+    for clone in clones:
+        name = clone["name"]
+        token = clone["token"]
+        bot = Client(f"{name}", API_ID, API_HASH, bot_token=token, plugins={"root": "clone"}, workers=300, in_memory=True)
+        await bot.start()
+        active_clones.append(bot)
+        await msg.edit("Aʟʟ Cʟᴏɴᴇs Sᴛᴀʀᴛᴇᴅ")
+
+
+
+#async def on_disconnect():
+#    for clone in active_clones:
+#        await clone["client"].stop()
+#    active_clones.clear()
+
+
+#if __name__ == "__main__":
+#    with mxabot:
+#        try:
+#            loop = asyncio.get_event_loop()
+#            loop.run_until_complete(on_disconnect())
+#            loop.run_until_complete(start_saved_clones())
+#        except ConnectionError:
+#            pass
+#    mxabot.idle()

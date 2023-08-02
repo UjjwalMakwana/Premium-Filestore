@@ -1,0 +1,9 @@
+pyrogram
+Pyromod
+tgcrypto
+aiohttp
+pymongo
+motor 
+Pillow==9.5.0
+requests
+pytz
