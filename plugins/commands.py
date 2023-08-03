@@ -221,6 +221,51 @@ async def sv_file(client: Client, message : Message):
 
 
 
+#====================================================================================================================================#
+
+BATCH = {}
+
+
+@Client.on_message(filters.command('batch') & filters.private)
+async def batch(client, message):
+    user = message.from_user
+    BATCH[user.id] = True
+    files = []
+    n = 1
+    cancel = [InlineKeyboardButton('Cancel ❌', callback_data='cancel')]
+    done = [InlineKeyboardButton('Done ✅', callback_data='done')]
+    while BATCH.get(user.id):
+        if n == 1:
+            try:
+                reply_markup = InlineKeyboardMarkup([cancel])
+                media = await client.ask(chat_id=user.id, text='Sᴇɴᴅ ᴍᴇ sᴏᴍᴇ ғɪʟᴇs ᴏʀ ᴠɪᴅᴇᴏs ᴏʀ ᴘʜᴏᴛᴏs ᴏʀ ᴛᴇxᴛ ᴏʀ ᴀᴜᴅɪᴏ. Iғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴄᴀɴᴄᴇʟ ᴛʜᴇ ᴘʀᴏᴄᴇss Cʟɪᴄᴋ ᴏɴ Cᴀɴᴄᴇʟ', filters=((filters.document|filters.video|filters.audio|filters.photo) & filters.incoming & ~filters.regex(r'^edited')), reply_markup=reply_markup, timeout=500)
+                files.append(media)
+            except asyncio.TimeoutError:
+                break
+            except Exception as e:
+                print(e)
+                await message.reply_text(text="Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ. Tʀʏ ᴀɢᴀɪɴ ʟᴀᴛᴇʀ.")
+        n += 1
+        
+    msg = await message.reply_text("Gᴇɴᴇʀᴀᴛɪɴɢ sʜᴀʀᴇᴀʙʟᴇ ʟɪɴᴋ 🔗")
+    strng = ""
+    for file in files:
+        msg = await file.forward(int(DB_CHANNEL))
+        strng += f"{msg.id}-"
+        await asyncio.sleep(1)
+
+    b64_strng = await encode_string(strng[:-1])
+    sent_msg = await client.send_message(int(DB_CHANNEL), b64_strng)
+    b64_string = await encode_string(f"batch_{user.id}_{sent_msg.id}")
+    bot = await client.get_me()
+    url = f"https://t.me/{bot.username}?start={b64_string}"
+    await message.edit(text="Lɪɴᴋ Gᴇɴʀᴀᴛᴇᴅ Fᴏʀ Yᴏᴜʀ Fɪʟᴇs", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Oᴘᴇɴ Uʀʟ 🔗", url=url)]]))
+
+
+
+#====================================================================================================================================#
+
+
 
 
 
