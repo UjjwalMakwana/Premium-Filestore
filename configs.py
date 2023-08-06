@@ -1,16 +1,19 @@
 import os
+from pyrogram import Client
+bot = Client.get_me()
+username = bot.username
 API_ID = int(os.environ.get("API_ID", ""))
 API_HASH = os.environ.get("API_HASH")
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
-BOT_USERNAME = os.environ.get("BOT_USERNAME", "NG_FileStoreBot")
-LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001924309872"))
-#BOT_OWNER = int(os.environ.get("BOT_OWNER", "1445283714"))
+BOT_USERNAME = os.environ.get("BOT_USERNAME", f"{username}")
+LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001702190728"))
+BOT_OWNER = int(os.environ.get("BOT_OWNER", "6532169397"))
 DATABASE_URL = os.environ.get("DATABASE_URL", "")
-DB_CHANNEL = int(os.environ.get("DB_CHANNEL", "-1001920203328"))
+DB_CHANNEL = int(os.environ.get("DB_CHANNEL", "-1001901246736"))
 
 
 START_TEXT = '''<b>
-Hᴇʟʟᴏ {}, I Aᴍ NG Pʀɪᴍɪᴜᴍ Fɪʟᴇsᴛᴏʀᴇ Bᴏᴛ!.
+Hᴇʟʟᴏ {}, Iᴍ Pʀɪᴍɪᴜᴍ Fɪʟᴇsᴛᴏʀᴇ Bᴏᴛ!.
 I ᴄᴀɴ sᴛᴏʀᴇ Mᴇᴅɪᴀ ғɪʟᴇs ᴀɴᴅ Gɪᴠᴇ ʏᴏᴜ Sʜᴀʀᴇᴀʙʟᴇ Lɪɴᴋ.
 ๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ Cᴏᴍᴍᴀɴᴅs Mᴇɴᴜ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴍʏ ᴄᴏᴍᴍᴀɴᴅs.
 </b>
